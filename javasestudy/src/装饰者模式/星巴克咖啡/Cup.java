@@ -1,16 +1,14 @@
 package 装饰者模式.星巴克咖啡;
 
-public abstract class Cup {
-
-    public String description = "unknown";
+public class Cup extends Coffee {
 
 
-    public String getDescription() {
-        return description;
+    public Cup() {
+        description = "杯子里有 ：";
     }
 
-    public abstract double cost();
-
-
-
+    @Override
+    public double cost() {
+        return 0;
+    }
 }

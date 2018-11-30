@@ -1,21 +1,21 @@
 package 装饰者模式.星巴克咖啡;
 
 public class DarkRoastBeverage extends Beverage{
-    Cup cup;
+    Coffee coffee;
 
     public String description = "深焙咖啡";
 
-    public DarkRoastBeverage(Cup cup) {
-        this.cup = cup;
+    public DarkRoastBeverage(Coffee coffee) {
+        this.coffee = coffee;
     }
 
     @Override
     public String getDescription() {
-        return super.getDescription() + description;
+        return coffee.getDescription() + description;
     }
 
     @Override
     public double cost() {
-        return cup.cost() + 5.0;
+        return coffee.cost() + 5.0;
     }
 }
