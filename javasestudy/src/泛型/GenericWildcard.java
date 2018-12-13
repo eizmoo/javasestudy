@@ -8,7 +8,7 @@ import 继承树.Super;
 import java.util.ArrayList;
 import java.util.List;
 
-public class 泛型通配符 {
+public class GenericWildcard {
 
     private static <K extends Number> void print(K k) {
         System.out.println(k + " " + k.getClass());

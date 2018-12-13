@@ -1,6 +1,6 @@
 package 泛型;
 
-public class 泛型方法 {
+public class GenericMethod {
 
     public static <K, V> boolean checkEquals(K k, V v) {
         System.out.println(k + " " + v);

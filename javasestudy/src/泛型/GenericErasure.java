@@ -1,6 +1,6 @@
 package 泛型;
 
-public class 泛型擦除 {
+public class GenericErasure {
 
     /**
      * Java中的泛型不是语言内在的机制，而是后来添加的特性，
@@ -13,8 +13,8 @@ public class 泛型擦除 {
      */
 
     public static void main(String[] args) {
-        泛型类 exampleInteger = new 泛型类<Integer>(123);
-        泛型类 exampleString = new 泛型类<String>("123");
+        GenericClass exampleInteger = new GenericClass<Integer>(123);
+        GenericClass exampleString = new GenericClass<String>("123");
 
         System.out.println(exampleInteger.getClass() == exampleString.getClass());
 
