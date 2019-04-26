@@ -1,6 +1,5 @@
 package json;
 
-import abc.A;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.beans.BeanUtils;
@@ -15,7 +14,7 @@ public class FastJson循环引用 {
 
     public static void main(String[] args) {
 
-        List<A> list = new ArrayList<>();
+//        List<A> list = new ArrayList<>();
 
         /*A a = new A(1, 1);
         list.add(a);
