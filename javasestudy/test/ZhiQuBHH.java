@@ -37,8 +37,12 @@ public class ZhiQuBHH {
         String result = postResultFForm(url, map);
 
         System.out.println(result);
+        System.out.println(result.contains("\"success\":true"));
         System.out.println(result.contains("\"queryStatus\":\"2\""));
         System.out.println(result.contains("\"queryStatus\":\"1\""));
+        System.out.println(result.contains("\"isBlack\":\"2\""));
+        System.out.println(result.contains("\"isBlack\":\"1\""));
+
 //        readExcel("/home/liuwei/Desktop/temp/未过黑名单用户名单1.xlsx");
 
     }
