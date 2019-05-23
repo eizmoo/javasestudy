@@ -45,3 +45,49 @@
 - CallerRunsPolicy
 将任务交给调用线程来执行
 
+### 应用
+j.u.c包下的Executors，提供了线程池ThreadPoolExecutor的初始化接口
+- newFixedThreadPool
+```java
+public static ExecutorService newFixedThreadPool(int nThreads) {
+        return new ThreadPoolExecutor(nThreads, nThreads,
+                                      0L, TimeUnit.MILLISECONDS,
+                                      new LinkedBlockingQueue<Runnable>());
+    }
+```
+核心线程数量 = 最大线程数量，核心线程满了之后不会开启新线程，而是放入LinkedBlockingQueue队列，队列
+长度为Integer.MAX_VALUE
+
+- newSingleThreadExecutor
+```java
+public static ExecutorService newSingleThreadExecutor() {
+        return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1,
+                                    0L, TimeUnit.MILLISECONDS,
+                                    new LinkedBlockingQueue<Runnable>()));
+    }
+```
+线程数只有1，是串行执行的线程池，保证任务的顺序
+
+- newCachedThreadPool
+```java
+public static ExecutorService newCachedThreadPool() {
+        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                      60L, TimeUnit.SECONDS,
+                                      new SynchronousQueue<Runnable>());
+    }
+```
+1. 初始化一个可以缓存线程的线程池，默认缓存60s，线程池的线程数可达到Integer.MAX_VALUE，
+即2147483647，内部使用SynchronousQueue作为阻塞队列
+2. 和newFixedThreadPool创建的线程池不同，newCachedThreadPool在没有任务执行时，
+当线程的空闲时间超过keepAliveTime，会自动释放线程资源，当提交新任务时，
+如果没有空闲线程，则创建新线程执行任务，会导致一定的系统开销
+3. 适用于短期异步的小任务，或负载教轻的服务器
+
+- newScheduledThreadPool
+```java
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
+        return new ScheduledThreadPoolExecutor(corePoolSize);
+    }
+```
+放入仅执行一次的任务或周期性执行的重复任务，在实际的业务场景中可以使用该线程池定期的同步数据

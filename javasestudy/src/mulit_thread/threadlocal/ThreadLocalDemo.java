@@ -1,4 +1,4 @@
-package 多线程.threadlocal;
+package mulit_thread.threadlocal;
 
 import java.util.concurrent.CountDownLatch;
 

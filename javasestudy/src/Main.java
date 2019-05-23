@@ -1,23 +1,24 @@
-import com.google.common.collect.Lists;
 
 import java.util.*;
 
 public class Main {
 
+
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        String a = "1";
+        Map<String, Object> map = new HashMap<>();
+        map.put(a, "1");
 
-        String[] array = new String[]{"1", "2"};
+        a = "2";
 
-        List list = Arrays.asList(array);
+        map.keySet().forEach(System.out::println);
 
-        System.out.println(list);
+        Map<A, Object> map1 = new HashMap<>();
+        A a1 = new A(1);
 
-        list.add("a");
+        map1.put(a1, 1);
+        a1 = new A(2);
 
-        HashMap map = new HashMap();
-        map.forEach((k, v) -> {
-
-        });
+        map1.keySet().forEach(System.out::println);
     }
 }

@@ -1,4 +1,4 @@
-package 多线程.read_write_lock;
+package mulit_thread.read_write_lock;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;

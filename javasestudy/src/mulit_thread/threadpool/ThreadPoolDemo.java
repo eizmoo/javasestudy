@@ -1,6 +1,4 @@
-package 多线程.线程池;
-
-import java.util.concurrent.ThreadPoolExecutor;
+package mulit_thread.threadpool;
 
 public class ThreadPoolDemo {
 

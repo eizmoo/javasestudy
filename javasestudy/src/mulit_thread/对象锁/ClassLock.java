@@ -1,4 +1,4 @@
-package 多线程.对象锁;
+package mulit_thread.对象锁;
 
 
 /**

@@ -1,4 +1,4 @@
-package 多线程.生产者消费者;
+package mulit_thread.生产者消费者;
 
 public class WaitNotify {
     private static final int[] LOCK = new int[1];
