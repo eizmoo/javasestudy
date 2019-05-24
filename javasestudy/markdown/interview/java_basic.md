@@ -82,4 +82,89 @@ jdk动态代理要求代理类继承于接口
 cglib生成代理类的子类，覆盖其中的所有方法，所以该类或方法不能声明称final的
 当目标类没有实现接口时，使用cglib，否则使用JDK动态代理(实现接口也可以强制使用cglib)
 
+# 为什么CGlib方式可以对接口实现代理
+CGLib采用了非常底层的字节码技术，其原理是通过字节码技术为一个类创建子类，并在子类中采用方法拦截的技术拦截所有父类方法的调用，顺势织入横切逻辑。
 
+# final的用途
+作用在类：类不可被继承，其内部方法即也隐式被指定为final方法
+作用在方法：方法不可被重写(可以被重载)
+作用在变量：引用第一次定义之后不可变，引用的属性可变
+
+# 单例实现方式
+- 懒汉式，线程不安全
+```java
+public class 懒汉式 {
+
+    private static A a;
+
+    public static A getInstance() {
+        if (a == null) {
+            a = new A();
+        }
+        return a;
+    }
+}
+```
+- 饿汉式，线程安全，但是失去了延迟实例化
+```java
+public class 饿汉式 {
+
+    private static A a = new A();
+
+    public static A getInstance() {
+        return a;
+    }
+
+}
+```
+- 懒汉式并发锁，线程安全，但是同一时间只有一个线程可以访问获取实例方法，极大降低并发
+```java
+public class 懒汉式并发锁 {
+    private static A a;
+
+    public synchronized static A getInstance() {
+        if (a == null) {
+            a = new A();
+        }
+        return a;
+    }
+    
+}
+```
+- 双重检查锁，线程安全 volatile保证不会发生指令重排，双重检查保证在并发下也可以只实例化一次
+```java
+public class 双重检查锁 {
+
+    private static volatile A a;
+
+    public static A getInstance() {
+        if (a == null) {
+            synchronized (双重检查锁.class) {
+                if (a == null) {
+                    a = new A();
+                }
+            }
+        }
+        return a;
+    }
+
+}
+```
+- 枚举实现，推荐。枚举类类似于静态内部类，提供了序列化机制，绝对防止多次实例化，及时面对复杂的序列化或者反射攻击。
+在《Effective Java》中提到单元素枚举类型已经成为实现Singleton的最佳方法。
+```java
+public enum 枚举实现 {
+    INSTANCE;
+
+    private A a;
+
+    枚举实现() {
+        this.a = new A();
+    }
+
+    public A getInstance() {
+        return a;
+    }
+}
+```
+用法为`枚举实现.INSTANCE.getInstance();`
