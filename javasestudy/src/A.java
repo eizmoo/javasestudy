@@ -15,4 +15,14 @@ public class A {
                 "a=" + a +
                 '}';
     }
+
+    @Override
+    public int hashCode() {
+        return a;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
