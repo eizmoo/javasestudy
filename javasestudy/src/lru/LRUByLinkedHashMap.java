@@ -12,7 +12,7 @@ public class LRUByLinkedHashMap extends LinkedHashMap {
 
     public LRUByLinkedHashMap(int maxSize) {
         // 容量为最大值/0.75，即最大负载容量为maxSize
-        // accessOrder=true  根据查询排序，即最近被使用的放到前面
+        // accessOrder=true  根据查询排序，即最近被使用的放到后面
         super((int) Math.ceil(maxSize / 0.75) + 1, 0.75f, true);
         this.maxSize = maxSize;
     }
