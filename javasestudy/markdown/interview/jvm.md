@@ -7,4 +7,5 @@
 堆存放内存对象，方法区存放类信息、常量，程序计数器和栈是线程私有，计数器指示栈的下一步执行的语句，栈是方法运行时的结构。
 新生代：老年代 = 1：2
 Eden和Survivor是堆新生代的结构。Survivor有两个，比率为Eden8Survivor1。
-划分的原因在于每次GC的时候会将old Survivor和Eden的不回收对象移动到new Survivor，然后清除掉old和Eden。然后将new 标记为old，下次再进行这种操作的new区域是不会使用的
+划分的原因在于每次GC的时候会将old Survivor和Eden的不回收对象移动到new Survivor，然后清除掉old和Eden。
+然后将new 标记为old，下次再进行这种操作的new区域是不会使用的
