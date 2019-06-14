@@ -88,6 +88,14 @@
             <artifactId>httpmime</artifactId>
             <version>4.5.8</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/easyexcel -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>1.1.2-beta5</version>
+        </dependency>
+
     </dependencies>
 
     <build>

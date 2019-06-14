@@ -1,4 +1,4 @@
-package 装饰者模式;
+package design_pattern.装饰者模式;
 
 public class Shirt extends ClothingDecorator {
 
