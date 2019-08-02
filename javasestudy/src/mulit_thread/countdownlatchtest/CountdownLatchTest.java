@@ -21,13 +21,14 @@ public class CountdownLatchTest {
             executor.execute(() -> {
                 try {
                     Thread.sleep(new Random().nextInt(20) * 1000);
-                    System.out.println(Thread.currentThread().getName()+" is over");
+                    System.out.println(Thread.currentThread().getName() + " is over");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 latch.countDown();
             });
         }
+        System.out.println(Thread.currentThread().getName() + "阻塞");
         latch.await();
         System.out.println("all is over");
     }

@@ -11,6 +11,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * 执行
@@ -56,14 +57,26 @@ public class Main {
         pool.setQueueCapacity(500);
         pool.setThreadNamePrefix("ds_job_");
 
+        CountDownLatch latch = new CountDownLatch(invokeDS.size());
 
-        invokeDS.forEach(ds -> dsMap.get(ds).invoke(map, entryFormThreadLocal));
-        System.out.println(entryFormThreadLocal.get());
+        invokeDS.forEach(ds -> {
+            DSInvoke dsInvoke = dsMap.get(ds);
+            pool.execute(() -> {
+                System.out.println(Thread.currentThread().getName() + "正在执行");
+                dsInvoke.invoke(map, entryFormThreadLocal, latch);
+            });
+        });
+        try {
+            System.out.println(Thread.currentThread().getName() + "线程阻塞~~");
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + "继续执行");
     }
 
     public void invoke() {
         invokeDS.forEach(ds -> dsMap.get(ds).invoke(map, entryFormThreadLocal));
-        System.out.println(entryFormThreadLocal.get());
     }
 
 
