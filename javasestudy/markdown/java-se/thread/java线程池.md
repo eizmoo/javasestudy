@@ -91,3 +91,6 @@ public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) 
     }
 ```
 放入仅执行一次的任务或周期性执行的重复任务，在实际的业务场景中可以使用该线程池定期的同步数据
+
+### 线程异常
+execute抛出异常，submit不抛出异常
