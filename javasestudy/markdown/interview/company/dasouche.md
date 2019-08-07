@@ -7,6 +7,7 @@ zuul正常访问，但是zuul的route会报错
 
 # 线程池核心线程的摧毁
 如果设置过期时间，就过期摧毁
+线程调用exception，该线程也会被摧毁
 线程池shutdown会摧毁
 
 # hashMap为何是2次幂
